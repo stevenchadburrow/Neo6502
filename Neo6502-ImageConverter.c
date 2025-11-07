@@ -70,6 +70,8 @@ int main(const int argc, const char **argv)
 		}
 	}
 
+	fprintf(output, "\t.BYTE ");
+
 	for (int y=239; y>=0; y--) // upside down
 	{
 		for (int x=0; x<80; x++)
@@ -79,20 +81,33 @@ int main(const int argc, const char **argv)
 				(pixel[y * 320 + x * 4 + 2] >> 4) |
 				(pixel[y * 320 + x * 4 + 3] >> 6));
 
-			fprintf(output, "0x%02X, ", buffer);
+			fprintf(output, "$%02X", buffer);
 
-			if (x % 16 == 15) fprintf(output, "\n");
+			if (x % 8 == 7)
+			{
+				if (x == 79)
+				{
+					fprintf(output, "\n");
+				}
+				else
+				{
+					fprintf(output, "\n\t.BYTE ");
+				}
+			}
+			else
+			{
+				fprintf(output, ",");
+			}
 		}
-
-		// extra black off screen
-		//for (int x=80; x<128; x++)
-		//{
-		//	fprintf(output, "0x00, ");
-		//
-		//	if (x % 16 == 15) fprintf(output, "\n");
-		//}
 	
-		fprintf(output, "\n");
+		if (y == 0)
+		{
+			fprintf(output, "\n");
+		}
+		else
+		{
+			fprintf(output, "\n\t.BYTE ");
+		}
 	}
 	
 	fclose(input);
