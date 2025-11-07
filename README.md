@@ -4,7 +4,7 @@
 
 The idea with this project is to make a cheap 4" x 4" PCB that can fit most of the functionality of my original <a href="https://github.com/stevenchadburrow/AcolyteComputer">Acolyte Computer</a>.<br>
 
-The purpose is to create run play games such as Tetris or Space Invaders clones that I will program in 6502 assembly.<br>
+The purpose is to play games such as Tetris or Space Invaders clones that I will program in 6502 assembly.<br>
 
 <b>Specs:</b><br>
 - W65C02 running at 3.14 MHz<br>
